@@ -1,0 +1,29 @@
+name: DevSecOps CI/CD Security Pipeline
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  secrets-and-sast:
+    name: Run Security Audits
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      # Secret Scanning
+      - name: Secret Scanning (Trufflehog)
+        uses: trufflesecurity/trufflehog-actions@main
+        with:
+          path: ./
+          base: main
+
+      # SAST Scan
+      - name: SAST Scan (Semgrep)
+        uses: returntocorp/semgrep-action@v1
+        with:
+          config: p/owasp-top-10
