@@ -13,17 +13,19 @@ jobs:
 
     steps:
       - name: Checkout Code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
-      # Secret Scanning
+      # Fixed TruffleHog Secret Scanning step
       - name: Secret Scanning (Trufflehog)
-        uses: trufflesecurity/trufflehog-actions@main
+        uses: trufflesecurity/trufflehog-main-action@main
         with:
           path: ./
-          base: main
+          base: ${{ github.event.repository.default_branch }}
+          head: HEAD
+          extra_args: --debug
 
       # SAST Scan
       - name: SAST Scan (Semgrep)
-        uses: returntocorp/semgrep-action@v1
+        uses: semgrep/semgrep-action@v1
         with:
           config: p/owasp-top-10
