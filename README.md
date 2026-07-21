@@ -24,9 +24,13 @@
 
 ``` text 🛡️ Core Pillars
 Foundation (CIA): Implements Separation of Duties (SoD) via GitOps approvals and WORM (Write Once, Read Many) logs for transaction integrity.
+
 Identity (IAM): Passwordless FIDO2 WebAuthn SSO, Just-In-Time (JIT) administrative access via PAM Vaults, and MDM policies for device health.
+
 Defense (DevSecOps): Infrastructure defined via Terraform. CI/CD pipelines automate secret scanning (TruffleHog) and static analysis (Semgrep) on every commit.
+
 Data Protection: AES-256 encryption at rest/transit with PQC (Post-Quantum Cryptography) readiness and real-time network DLP.
+
 Detection (SOC/SOAR): Centralized SIEM telemetry with automated SOAR playbooks for incident containment (e.g., auto-isolating compromised hosts).
 ```
 ⚠️ STRIDE Threat MatrixThreatRisk ScenarioSecurity ControlSpoofingSession hijackingFIDO2 MFA + JIT PAM AccessTamperingTransaction ledger modificationWORM immutable logsRepudiationDenying high-value wire transfersHMAC-SHA256 payload signingInfo DisclosureCloud storage bucket leakAES-256 KMS EncryptionDoSAPI service crashAnycast DNS + WAF Rate LimitingPrivilege EscalationLateral move to databaseMicrosegmentation (Port 5432 isolation)
